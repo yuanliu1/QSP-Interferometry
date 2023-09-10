@@ -1,5 +1,6 @@
 from cvqi import cvqIon
 import matplotlib.pyplot as plt
+import matplotlib.gridspec as gridspec
 import matplotlib as mpl
 from qutip import *
 from qutip.measurement import measure
@@ -54,8 +55,8 @@ plt.rc('xtick', labelsize = 24)    # fontsize of the tick labels
 plt.rc('ytick', labelsize = 24)    # fontsize of the tick labels
 
 W_F = wigner((tensor(qeye(N), create(2)) * psi[-1]).ptrace(0).unit(), xvec, yvec) # code for generating Wigner plot of upper-left matrix entry F
-#W_G = wigner((tensor(qeye(N), destroy(2)) * psi[-1]).ptrace(0).unit(), xvec, yvec) # code for generating Wigner plot of upper-right matrix entry G
-#W_cat = wigner(cat, xvec, yvec) # code for generating Wigner plot of cat state with same displacement
+# W_G = wigner((tensor(qeye(N), destroy(2)) * psi[-1]).ptrace(0).unit(), xvec, yvec) # code for generating Wigner plot of upper-right matrix entry G
+# W_cat = wigner(cat, xvec, yvec) # code for generating Wigner plot of cat state with same displacement
   
 wlim = abs(W_F).max() # getting maximum value in Wigner plot to set scale
 
@@ -65,11 +66,11 @@ with open(filename, 'wb+') as f:
     np.save(f, W_F)
 
 # make the desired Wigner plot, using an appropriate number of colors in the color map
-ax1.contourf(xvec, yvec, W_F, 1000, norm=mpl.colors.Normalize(-wlim, wlim), cmap=mpl.cm.get_cmap('RdBu'))
+ax1.contourf(xvec, yvec, W_F, 1000, norm = mpl.colors.Normalize(-wlim, wlim), cmap = mpl.cm.get_cmap('RdBu'))
 ax1.set_title('QSPI Sensing State d = ' + str(d), fontsize = 48)
 plt.draw()
 
-# ax1.contourf(xvec, xvec, W_G, 1000, norm=mpl.colors.Normalize(-wlim, wlim), cmap=mpl.cm.get_cmap('RdBu'))
+# ax1.contourf(xvec, xvec, W_G, 1000, norm = mpl.colors.Normalize(-wlim, wlim), cmap = mpl.cm.get_cmap('RdBu'))
 # ax1.set_title('QSPI Sensing State G d = ' + str(d), fontsize = 48)
 # plt.draw()
 
@@ -79,3 +80,63 @@ plt.show()
 # save the Wigner plot itself as a png file
 save_title = "20230906_qspi_d_9_k_1_size_40_res_2500_N_400" # use same titling convention as with npy file
 fig.savefig(save_title, format = 'png', dpi = 1024, bbox_inches = 'tight')
+
+##################################################################################################################
+# Processing of Wigner function data
+
+xvec = np.linspace(-3, 3, 2400)
+yvec = np.linspace(-3, 3, 2400)
+
+W_qsp = np.load("20230908_sensing_wigner_title_d_9_k_1_sqrt2_size_6_res_2400_N_400.npy")
+marginalx_qsp = np.trapz(W_qsp, xvec, axis = 0)
+marginalp_qsp = np.trapz(W_qsp, yvec, axis = 1)
+wlim_qsp = W_qsp.max()
+
+W_cat = np.load("20230908_cat_state_9i_corrected_title_d_9_k_1_sqrt2_size_6_res_2400_N_400.npy")
+marginalx_cat = np.trapz(W_cat, xvec, axis = 0)
+marginalp_cat = np.trapz(W_cat, yvec, axis = 1)
+wlim_cat = W_cat.max()
+
+fig2 = plt.figure(figsize = (8, 8))
+gs2 = gridspec.GridSpec(3, 3)
+ax_main2 = plt.subplot(gs2[1:3, :2])
+ax_xDist2 = plt.subplot(gs2[0, :2], sharex = ax_main2)
+ax_pDist2 = plt.subplot(gs2[1:3, 2],sharey = ax_main2)
+
+ax_main2.contourf(xvec, yvec, W_cat, 1000, norm = mpl.colors.Normalize(-wlim_cat, wlim_cat), cmap = mpl.cm.get_cmap('RdBu'))
+# ax_main2.contourf(xvec, yvec, W_qsp, 1000, norm = mpl.colors.Normalize(-wlim_qsp, wlim_qsp), cmap = mpl.cm.get_cmap('RdBu'))
+# ax_main2.set_title('Cat State', fontsize = 48)
+ax_main2.set(xlabel = "x", ylabel = "p")
+
+ax_xDist2.plot(xvec, marginalx_cat)
+ax_xDist2.set(ylabel = 'x marginal')
+
+ax_pDist2.plot(marginalp_cat, yvec)
+ax_pDist2.set(xlabel = 'p marginal')
+
+save_title = "20230908_cat_state_9i_corrected_title_d_9_k_1_sqrt2_size_6_res_2400_N_400_w_marginals"
+fig2.savefig(save_title, format = 'png', dpi = 1024, bbox_inches = 'tight')
+
+plt.show()
+
+fig3 = plt.figure(figsize = (8, 8))
+gs3 = gridspec.GridSpec(3, 3)
+ax_main = plt.subplot(gs3[1:3, :2])
+ax_xDist = plt.subplot(gs3[0, :2], sharex = ax_main3)
+ax_pDist = plt.subplot(gs3[1:3, 2],sharey = ax_main3)
+
+ax_main.contourf(xvec, yvec, W_qsp, 1000, norm = mpl.colors.Normalize(-wlim_qsp, wlim_qsp), cmap = mpl.cm.get_cmap('RdBu'))
+# ax_main.contourf(xvec, yvec, W_cat, 1000, norm = mpl.colors.Normalize(-wlim_cat, wlim_cat), cmap = mpl.cm.get_cmap('RdBu'))
+# ax_main.set_title('QSPI Sensing State', fontsize = 48)
+ax_main3.set(xlabel = "x", ylabel = "p")
+
+ax_xDist3.plot(xvec, marginalx_cat)
+ax_xDist3.set(ylabel = 'x marginal')
+
+ax_pDist3.plot(marginalp_cat, yvec)
+ax_pDist3.set(xlabel = 'p marginal')
+
+save_title = "20230908_sensing_wigner_title_d_9_k_1_sqrt2_size_6_res_2400_N_400_w_marginals"
+fig3.savefig(save_title, format = 'png', dpi = 1024, bbox_inches = 'tight')
+
+plt.show()
