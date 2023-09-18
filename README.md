@@ -34,7 +34,7 @@ The cvqi.py code file provides code for simulating continuous-variable quantum c
 | calc\_expectations | Calculate expectation values over history | List of operators |
 | expectation\_plots | Plot expectation values over history | List of operators<br>Operator names<br>Time scale |
 | create\_wigner\_plot | Generate Wigner plots of wavefunction | $x$-dimension range<br>$p$-dimension range |
-| cont\_wigner\_plot | List of plot states<br>$x$-dimension range<br>$p$-dimension range<br>Figure and axes to plot on<br>Title for figure |
+| cont\_wigner\_plot | Generate an animation showing the evolution of the Wigner plot over time | List of plot states<br>$x$-dimension range<br>$p$-dimension range<br>Figure and axes to plot on<br>Title for figure |
 | plot\_fock | Plot distributions over Fock states | N/A |
 | fidelity | Compute fidelity of noisy w.r.t. noiseless | N/A |
 
@@ -49,7 +49,7 @@ The cvqi\_phase\_learning.py code file provides code for learning the optimal QS
 | calc\_qsp\_coeff | Calculates $f$ and $g$ coefficients given phases | Phases |
 | calc\_qsp\_coeff\_tensor | Calculates tensors of $f$ and $g$ coefficients given phases | Phases |
 | prob\_exact | Calculates the probability of error $p_{\rm err}$ given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $K$ |
-| loss\_fn\_exact | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
+| loss\_fn\_exact | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
 
 Using these functions, and, in particular, the function loss\_fn\_exact, we implement in this code file machine optimization on the QSPI phases with the Nelder-Mead optimization algorithm in order to find phases that make optimal decisions about displacement of a quantum state.
 
