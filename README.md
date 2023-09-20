@@ -10,7 +10,7 @@ Such a circuit allows for more efficient quantum-sensing decisions because the i
 
 ## Using the code in this repository
 
-This repository includes four code files, namely <strong><code>cvqi.py</code></strong>, qspi\_phase\_learning.py, cvqi\_and\_cat\_wigner\_plots.py, and plot\_qspi\_sensing\_state\_response.py.  Each code file serves a unique but important role for this work and its visualizations, so we will briefly describe each in a separate section of this README.
+This repository includes four code files, namely <strong><code>cvqi.py</code></strong>, <strong><code>qspi\_phase\_learning.py</strong></code>, <strong><code>cvqi\_and\_cat\_wigner\_plots.py</strong></code>, and <strong><code>plot\_qspi\_sensing\_state\_response.py</strong></code>.  Each code file serves a unique but important role for this work and its visualizations, so we will briefly describe each in a separate section of this README.
 
 Note that in order to utilize this code, there are a few basic requirements regarding necessary packages.  These are outlined in the document src/requirements.txt of this repository.  Note that to install these required packages, it is necessary only to navigate to the directory in which the text file requirements.txt is located and then enter the line `pip install -r requirements.txt` in the terminal.  This will install all of the required versions of the packages for running the code for QSPI phase learning and visualization.
 
