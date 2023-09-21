@@ -2,19 +2,19 @@
 
 ## Introduction
 
-In this work, we make use of a generalization of standard qubit [Quantum signal processing](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.118.010501) (QSP) to the case of an ancilla qubit coupled to a bosonic oscillator to perform signal processing of the bosonic quadrature operators (**Bosonic QSP**) based on a natural physical block-encoding of $e^{-i h(\hat{x}, \hat{p})}$ inside a signal unitary $U = e^{-i h(\hat{x}, \hat{p}) \sigma_z}$, where $h(\hat{x}, \hat{p})$ is an analytical function (often truncated into a finite-order polynomial function) of bosonic position ($\hat{x}$) and momentum ($\hat{p}$) operators. We build on top of such bosonic QSP to construct a bosonic **QSP Interferometry** protocol and utilize it to perform quantum sensing of displacements on the bosonic mode.  In particular, for our signal unitary U, we choose $h(\hat{x}, \hat{p}) = -k \hat{x}$ for a constant momentum kick $k$. This means our bosonic QSP signal operator is essentially a controlled displacement operations on the bosonic mode with the ancilla sensing qubit taken as the control, denoted by $c\mathcal{D}(\cdot)$, alternated with qubit rotations on the ancilla qubit as the signal processing unitary. We show such a construction can realize an arbitrary degree-$d$ real Laurent polynomial transformation on $\omega(x) = e^{ik\hat{x}}$ with a depth $O(d)$ circuit. This allows us to prepare a wide range of continuous-variable oscillator states with significant flexibility.
+In this work, we make use of a generalization of standard qubit [Quantum signal processing](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.118.010501) (QSP) to the case of an ancilla qubit coupled to a bosonic oscillator to perform signal processing of the bosonic quadrature operators (**Bosonic QSP**) based on a natural physical block-encoding of $e^{-i h(\hat{x}, \hat{p})}$ inside a signal unitary $U = e^{-i h(\hat{x}, \hat{p}) \sigma_z}$, where $h(\hat{x}, \hat{p})$ is an analytical function (often truncated into a finite-order polynomial function) of bosonic position ($\hat{x}$) and momentum ($\hat{p}$) operators.  We build on top of such bosonic QSP to construct a bosonic **QSP Interferometry** protocol and utilize it to perform quantum sensing of displacements on the bosonic mode.  In particular, for our signal unitary $U$, we choose $h(\hat{x}, \hat{p}) = -k \hat{x}$ for a constant momentum kick $k$.  This means our bosonic QSP signal operator is essentially a controlled displacement operation on the bosonic mode with the ancilla sensing qubit taken as the control, denoted by $c\mathcal{D}(\cdot)$, alternated with a qubit rotation on the ancilla qubit as the signal processing unitary.  We show that such a construction can realize an arbitrary degree- $d$ real Laurent polynomial transformation on $\omega(x) = e^{ik\hat{x}}$ with a depth $\mathcal{O}(d)$ circuit.  This allows us to prepare a wide range of continuous-variable oscillator states with significant flexibility.
 
-Such a bosonic QSP enables more efficient and tailored quantum sensing tasks beyond simple parameter estimation. In particular, using the binary measurement outcome on the ancilla qubit, we demonstrate Heisenberg like scaling in performing qunatum decisions for a unitary displacement channel.
+Such a bosonic QSP enables more efficient and tailored quantum sensing tasks beyond simple parameter estimation.  In particular, using the binary measurement outcome on the ancilla qubit, we demonstrate Heisenberg-like scaling in performing qunatum decisions for a unitary displacement channel.
 
 ## Using the code in this repository
 
-This repository includes four code files, namely <strong><code>cvqi.py</code></strong>, <strong><code>qspi\_phase\_learning.py</strong></code>, <strong><code>cvqi\_and\_cat\_wigner\_plots.py</strong></code>, and <strong><code>plot\_qspi\_sensing\_state\_response.py</strong></code>.  Each code file serves a unique but important role for this work and its visualizations, so we will briefly describe each in a separate section of this README.
+This repository includes four code files, namely <strong><code>cvqi.py</code></strong>, <strong><code>qspi\_phase\_learning.py</code></strong>, <strong><code>cvqi\_and\_cat\_wigner\_plots.py</code></strong>, and <strong><code>plot\_qspi\_sensing\_state\_response.py</code></strong>.  Each code file serves a unique but important role for this work and its visualizations, so we will briefly describe each in a separate section of this README.
 
-Note that in order to utilize this code, there are a few basic requirements regarding necessary packages.  These are outlined in the document src/requirements.txt of this repository.  Note that to install these required packages, it is necessary only to navigate to the directory in which the text file requirements.txt is located and then enter the line `pip install -r requirements.txt` in the terminal.  This will install all of the required versions of the packages for running the code for QSPI phase learning and visualization.
+Note that in order to utilize this code, there are a few basic requirements regarding necessary packages.  These are outlined in the document <strong><code>src/requirements.txt</code></strong> of this repository.  Note that to install these required packages, it is necessary only to navigate to the directory in which the text file <strong><code>requirements.txt</code></strong> is located and then enter the line `pip install -r requirements.txt` in the terminal.  This will install all of the required versions of the packages for running the code for QSPI phase learning and visualization.
 
 ### cvqi.py
 
-The cvqi.py code file provides code for simulating continuous-variable quantum computing, or CVQI, operations, on a qumode, as well as code for hybrid operations with an ancilla qubit.  The functions are outlined in the table below.
+The <strong><code>cvqi.py</code></strong> code file provides code for simulating continuous-variable quantum computing, or CVQI, operations, on a qumode, as well as code for hybrid operations with an ancilla qubit.  The functions are outlined in the table below.
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
@@ -38,11 +38,11 @@ The cvqi.py code file provides code for simulating continuous-variable quantum c
 | plot\_fock | Plot distributions over Fock states | N/A |
 | fidelity | Compute fidelity of noisy w.r.t. noiseless | N/A |
 
-We primarily made use of the carrier_evo and cntrl_disp_evo functions to construct the desired QSPI sensing states, as well as the cat states, and then the create_wigner_plot function in our plotting code in order to visualize these states.
+We primarily make use of the carrier_evo and cntrl_disp_evo functions to construct the desired QSPI sensing states, as well as the cat states, and then the create_wigner_plot function in our plotting code in order to visualize these states.
 
 ### qspi\_phase\_learning.py
 
-The cvqi\_phase\_learning.py code file provides code for learning the optimal QSPI phases given the appropriate objective function.  Its functions are outlined in the table below.
+The <strong><code>cvqi\_phase\_learning.py</code></strong> code file provides code for learning the optimal QSPI phases given the appropriate objective function.  Its functions are outlined in the table below.
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
@@ -53,22 +53,22 @@ The cvqi\_phase\_learning.py code file provides code for learning the optimal QS
 
 Using these functions, and, in particular, the function loss\_fn\_exact, we implement in this code file machine optimization on the QSPI phases with the Nelder-Mead optimization algorithm in order to find phases that make optimal decisions about displacement of a quantum state.
 
-The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the qspi\_phase\_learning.py file and add the desired degrees to the variable degree\_list, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which, admittedly, has the weakness that the phases might get caught in a local minimum of the loss function rather than being minimized all of the way to the global loss, which is why it might be beneficial to set the num\_trials variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable phases0 to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being K, which represents $k$, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
+The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the <strong><code>qspi\_phase\_learning.py</code></strong> file and add the desired degrees to the variable degree\_list, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which has the weakness that during optimization, the phases might get stuck in a local minimum of the loss function rather than being minimized all of the way to the global loss.  As such, it might be beneficial to set the num\_trials variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable phases0 to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being K, which represents $k$, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
 
 ### cvqi\_and\_cat\_wigner\_plots.py
 
-The cvqi\_and\_cat\_wigner\_plots.py code file is used only to generate the CVQI sensing state and cat state Wigner plots given the learned QSPI phases.  It primarily utilizes the cvqi.py code for the cvqiIon class to do so and does not have any functions of its own.
+The <strong><code>cvqi\_and\_cat\_wigner\_plots.py</code></strong> code file is used only to generate the CVQI sensing state and cat state Wigner plots given the learned QSPI phases.  It primarily utilizes the <strong><code>cvqi.py</code></strong> code for the cvqiIon class to do so and does not have any functions of its own.
 
 ### plot\_qspi\_sensing\_state\_response.py
 
-The plot\_qspi\_sensing\_state\_response.py code file is used only to plot the qubit response functions for the learned QSPI phases.  As such, it only has a couple of new functions for generating the arrays used to construct these plots, while the rest are copies of the functions in qspi_phase_learning.py.  The new functions are outlined in the table below.
+The <strong><code>plot\_qspi\_sensing\_state\_response.py</code></strong> code file is used only to plot the qubit response functions for the learned QSPI phases.  As such, it only has a couple of new functions for generating the arrays used to construct these plots, while the rest are copies of the functions in <strong><code>qspi_phase_learning.py</code></strong>.  The new functions are outlined in the table below.
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
 | signal\_poly\_prob\_grid | Calculates the probabilities of the qubit response function in the range from $-\frac{\pi}{2K}$ to $\frac{\pi}{2K}$ given the number of grid units to include | Phases<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Number of grid units to include |
 | signal\_poly\_prob\_grid\_qsp\_partial | Calculates the probabilities of the qubit response function in a subset of the range from $-\frac{\pi}{2K}$ to $\frac{\pi}{2K}$ given the number of grid units to include | Phases<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Number of grid units to include<br>Proportion of the range to include<br>Boolean indicating whether to begin at $-\frac{\pi}{2K}$ or end at $\frac{\pi}{2K}$ |
 
-Using these two functions, we calculate all of the values necessary to generate the plots for our paper using the optimal QSPI phases learned from the code given in cvqi\_phase\_learning.py.
+Using these two functions, we calculate all of the values necessary to generate the plots for our paper using the optimal QSPI phases learned from the code given in <strong><code>cvqi\_phase\_learning.py</code></strong>.
 
 ## Citing this repository
 
