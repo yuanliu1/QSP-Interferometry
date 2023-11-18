@@ -253,7 +253,7 @@ class cvqIon:
         """
 
         a = self.a_ops[mode]
-        H = 1j * alpha * a.dag() - np.conj(alpha) * a
+        H = 1j * (alpha * a.dag() - np.conj(alpha) * a)
         #print("Hamiltonian:", H)
 
         return self.__apply_hamiltonian(H, tlist)
