@@ -482,7 +482,7 @@ class cvqIon:
       a = self.a_ops[mode]
       # Dipole coupling <g|E_0 * x|e>
       # omegaR = 1
-      H = theta * (self.sigma_p * np.exp(-1j * phi) + self.sigma_m * np.exp(1j * phi))/2
+      H = -theta * (self.sigma_p * np.exp(-1j * phi) + self.sigma_m * np.exp(1j * phi))/2
 
       return self.evolution_exact(H, t)
 
