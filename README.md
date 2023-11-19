@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this work, we make use of a generalization of standard qubit [Quantum signal processing](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.118.010501) (QSP) to the case of an ancilla qubit coupled to a bosonic oscillator to perform signal processing of the bosonic quadrature operators (**Bosonic QSP**) based on a natural physical block-encoding of $e^{-i h(\hat{x}, \hat{p})}$ inside a signal unitary $U = e^{-i h(\hat{x}, \hat{p}) \sigma_z}$, where $h(\hat{x}, \hat{p})$ is an analytic function (often truncated to a finite-order polynomial function) of the bosonic position ($\hat{x}$) and momentum ($\hat{p}$) operators.  We build on top of such bosonic QSP the construction of a bosonic **QSP Interferometry** protocol and utilize it to perform quantum sensing of displacements on the bosonic mode.  In particular, for our signal unitary $U$, we choose $h(\hat{x}, \hat{p}) = -k \hat{x}$ for a constant momentum kick $k$.  This means our bosonic QSP signal operator is essentially a controlled displacement operation on the bosonic mode with the ancilla sensing qubit taken as the control, denoted by $c\mathcal{D}(\cdot)$, alternated with a qubit rotation on the ancilla qubit as the signal processing unitary.  We show that such a construction can realize an arbitrary degree- $d$ real Laurent polynomial transformation on $\omega(x) = e^{ik\hat{x}}$ with a depth $\mathcal{O}(d)$ circuit.  This allows us to prepare a wide range of continuous-variable oscillator states with significant flexibility.
+In this work, we make use of a generalization of standard qubit [Quantum signal processing](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.118.010501) (QSP) to the case of an ancilla qubit coupled to a bosonic oscillator to perform signal processing of the bosonic quadrature operators (**Bosonic QSP**) based on a natural physical block-encoding of $e^{-i h(\hat{x}, \hat{p})}$ inside a signal unitary $U = e^{-i h(\hat{x}, \hat{p}) \sigma_z}$, where $h(\hat{x}, \hat{p})$ is an analytic function (often truncated to a finite-order polynomial function) of the bosonic position ($\hat{x}$) and momentum ($\hat{p}$) operators.  We build on top of such bosonic QSP the construction of a bosonic **QSP Interferometry** protocol and utilize it to perform quantum sensing of displacements on the bosonic mode.  In particular, for our signal unitary $U$, we choose $h(\hat{x}, \hat{p}) = -\kappa \hat{x}$ for a constant momentum kick $\kappa$.  This means our bosonic QSP signal operator is essentially a controlled displacement operation on the bosonic mode with the ancilla sensing qubit taken as the control, denoted by $c\mathcal{D}(\cdot)$, alternated with a qubit rotation on the ancilla qubit as the signal processing unitary.  We show that such a construction can realize an arbitrary degree- $d$ real Laurent polynomial transformation on $\omega(x) = e^{i\kappa\hat{x}}$ with a depth $\mathcal{O}(d)$ circuit.  This allows us to prepare a wide range of continuous-variable oscillator states with significant flexibility.
 
 Such bosonic QSP enables more efficient and specifically-tailored quantum sensing protocols beyond simple parameter estimation.  In particular, using the binary measurement outcome on the ancilla qubit, we demonstrate Heisenberg-like scaling in performing quantum decisions for a unitary displacement channel.
 
@@ -19,8 +19,11 @@ The <strong><code>cvqi.py</code></strong> code file provides code for simulating
 | Function Name | Description | Input Parameters |
 |-|-|-|
 | \_\_apply\_h | Evolution under any Hamiltonian | Hamiltonian $H$<br>Operation time $t$<br>Master Equation solver name<br>Additional arguments dict. |
+| carrier\_evo | n'th blue sideband transition evolution | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
+| carrier\_evo\_exact | n'th blue sideband transition evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
 | free\_evo | Free Hamiltonian evolution | Operation time $t$ |
 | disp\_evo | Displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
+| disp\_evo\_exact | Displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
 | sq\_evo | Squeezing Hamiltonian evolution | Mode number $j$<br>Parametric amp. strength $g$<br>Modulation drive phase $\theta$<br>Operation time $t$ |
 | bs\_evo | Beamsplitter Hamiltonian evolution | First mode number $j$<br>Second mode number $k$<br>Beamsplitter strength $g$<br>Operation time $t$ |
 | el\_drive | Time-dependent classical electric drive field evolution | Amplitude of E-field $A$<br> Phase of E-field $\phi$<br>E-field drive frequency $f$<br>Mode number $j$<br>Amplitude modulation of E-field $e$<br>Operation time $t$<br>QuTiP Solver *solver*<br>Boolean for use of Blackman window vs. linear ramp-up and ramp-down<br>Ramp-up proportion *ramp\_up*<br>Ramp-down proportion *ramp\_down* |
@@ -30,6 +33,7 @@ The <strong><code>cvqi.py</code></strong> code file provides code for simulating
 | stark\_evo | AC Stark Hamiltonian evolution | Mode number $j$<br>Operation time $t$ |
 | kerr\_evo | Cross-Kerr Hamiltonian evolution | Mode number $j$<br>Kerr nonlinearity $\chi$<br>Operation time $t$ |
 | cntrl\_disp\_evo | Controlled displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
+| cntrl\_disp\_evo\_exact | Controlled displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
 | \_\_init\_\_ | Initialize cvqIon instance | Mass $m$<br>Charge $q$<br>Char. length $d$<br>Init. wavefunction $\psi_0$<br>Num. Fock states $N$<br>Mode frequencies<br>Heating rate<br>Dephasing rate |
 | calc\_expectations | Calculate expectation values over history | List of operators |
 | expectation\_plots | Plot expectation values over history | List of operators<br>Operator names<br>Time scale |
@@ -38,7 +42,7 @@ The <strong><code>cvqi.py</code></strong> code file provides code for simulating
 | plot\_fock | Plot distributions over Fock states | N/A |
 | fidelity | Compute fidelity of noisy w.r.t. noiseless | N/A |
 
-We primarily make use of the carrier_evo and cntrl_disp_evo functions to construct the desired QSPI sensing states, as well as the cat states, and then the create_wigner_plot function in our plotting code in order to visualize these states.
+We primarily make use of the carrier\_evo\_exact and cntrl\_disp\_evo\_exact functions to construct the desired QSPI sensing states, as well as the cat states, and we also use the disp\_evo\_exact function for implementing the displacement operation to be sensed in the evaluation of the full protocol.  We then utilize the create\_wigner\_plot function in our plotting code in order to visualize these states.
 
 ### qspi\_phase\_learning.py
 
@@ -48,12 +52,12 @@ The <strong><code>cvqi\_phase\_learning.py</code></strong> code file provides co
 |-|-|-|
 | calc\_qsp\_coeff | Calculates $f$ and $g$ coefficients given phases | Phases |
 | calc\_qsp\_coeff\_tensor | Calculates tensors of $f$ and $g$ coefficients given phases | Phases |
-| prob\_exact | Calculates the probability of error $p_{\rm err}$ given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $K$ |
-| loss\_fn\_exact | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
+| prob\_exact | Calculates the probability of error $p_{\rm err}$ given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$ |
+| loss\_fn\_exact | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
 
 Using these functions, and, in particular, the function loss\_fn\_exact, we implement in this code file machine optimization on the QSPI phases with the Nelder-Mead optimization algorithm in order to find phases that make optimal decisions about displacement of a quantum state.
 
-The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the <strong><code>qspi\_phase\_learning.py</code></strong> file and add the desired degrees to the variable degree\_list, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which has the weakness that during optimization, the phases might get stuck in a local minimum of the loss function rather than being minimized all of the way to the global loss.  As such, it might be beneficial to set the num\_trials variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable phases0 to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being K, which represents $k$, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
+The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the <strong><code>qspi\_phase\_learning.py</code></strong> file and add the desired degrees to the variable degree\_list, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which has the weakness that during optimization, the phases might get stuck in a local minimum of the loss function rather than being minimized all of the way to the global loss.  As such, it might be beneficial to set the num\_trials variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable phases0 to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being $\kappa$, the scale parameter represented by the variable K, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
 
 ### cvqi\_and\_cat\_wigner\_plots.py
 
@@ -65,8 +69,8 @@ The <strong><code>plot\_qspi\_sensing\_state\_response.py</code></strong> code f
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
-| signal\_poly\_prob\_grid | Calculates the probabilities of the qubit response function in the range from $-\frac{\pi}{2K}$ to $\frac{\pi}{2K}$ given the number of grid units to include | Phases<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Number of grid units to include |
-| signal\_poly\_prob\_grid\_qsp\_partial | Calculates the probabilities of the qubit response function in a subset of the range from $-\frac{\pi}{2K}$ to $\frac{\pi}{2K}$ given the number of grid units to include | Phases<br>Scale parameter $K$<br>Variance of state $\sigma$<br>Number of grid units to include<br>Proportion of the range to include<br>Boolean indicating whether to begin at $-\frac{\pi}{2K}$ or end at $\frac{\pi}{2K}$ |
+| signal\_poly\_prob\_grid | Calculates the probabilities of the qubit response function in the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include |
+| signal\_poly\_prob\_grid\_qsp\_partial | Calculates the probabilities of the qubit response function in a subset of the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include<br>Proportion of the range to include<br>Boolean indicating whether to begin at $-\frac{\pi}{2\kappa}$ or end at $\frac{\pi}{2\kappa}$ |
 
 Using these two functions, we calculate all of the values necessary to generate the plots for our paper using the optimal QSPI phases learned from the code given in <strong><code>cvqi\_phase\_learning.py</code></strong>.
 
