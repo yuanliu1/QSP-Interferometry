@@ -76,7 +76,7 @@ Using these two functions, we calculate all of the values necessary to generate 
 
 ## Citing this repository
 
-To cite this repository please include a reference to [our paper](https://www.google.com)
+To cite this repository please include a reference to [our paper](https://arxiv.org/pdf/2311.13703.pdf)
 
 ## History
 
