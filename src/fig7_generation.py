@@ -689,7 +689,7 @@ for phases_idx in range(len(qspi_state_phase_list)):
     plt.draw()
 
     save_title = "20231118_cat_state_f_d_" + str(d - 1) + "_k_15e-2sqrt2_size_20_res_400_N_200_symlognorm_linthresh_0025_linscale_0025_colorbar.png"
-    plt.savefig("/content/drive/My Drive/QSPI Sensing Figures/" + save_title, format = 'png', dpi = 300, bbox_inches = 'tight')
+    plt.savefig(save_title, format = 'png', dpi = 300, bbox_inches = 'tight')
 
     plt.show()
     plt.clf()
@@ -776,7 +776,7 @@ for phases_idx in range(len(qspi_state_phase_list)):
     plt.draw()
 
     save_title = "20231118_qspi_state_qubit0_3_2_beta_th_d_" + str(d - 1) + "_k_15e-2sqrt2_size_20_res_400_N_200_symlognorm_linthresh_0025_linscale_0025_no_colorbar.png"
-    plt.savefig("/content/drive/My Drive/QSPI Sensing Figures/" + save_title, format = 'png', dpi = 300, bbox_inches = 'tight')
+    plt.savefig(save_title, format = 'png', dpi = 300, bbox_inches = 'tight')
 
     plt.show()
     plt.clf()
