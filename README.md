@@ -18,31 +18,31 @@ The <strong><code>cvqi.py</code></strong> code file provides code for simulating
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
-| \_\_apply\_h | Evolution under any Hamiltonian | Hamiltonian $H$<br>Operation time $t$<br>Master Equation solver name<br>Additional arguments dict. |
-| carrier\_evo | n'th blue sideband transition evolution | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
-| carrier\_evo\_exact | n'th blue sideband transition evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
-| free\_evo | Free Hamiltonian evolution | Operation time $t$ |
-| disp\_evo | Displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
-| disp\_evo\_exact | Displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
-| sq\_evo | Squeezing Hamiltonian evolution | Mode number $j$<br>Parametric amp. strength $g$<br>Modulation drive phase $\theta$<br>Operation time $t$ |
-| bs\_evo | Beamsplitter Hamiltonian evolution | First mode number $j$<br>Second mode number $k$<br>Beamsplitter strength $g$<br>Operation time $t$ |
-| el\_drive | Time-dependent classical electric drive field evolution | Amplitude of E-field $A$<br> Phase of E-field $\phi$<br>E-field drive frequency $f$<br>Mode number $j$<br>Amplitude modulation of E-field $e$<br>Operation time $t$<br>QuTiP Solver *solver*<br>Boolean for use of Blackman window vs. linear ramp-up and ramp-down<br>Ramp-up proportion *ramp\_up*<br>Ramp-down proportion *ramp\_down* |
-| phase\_evo | Phase-shift Hamiltonian evolution | Mode number $j$<br>Phase $\phi$<br>Operation time $t$ |
-| rsb\_evo | Red side-band Hamiltonian evolution | Mode number $j$<br>Side-band order $n$<br>Phase $\phi$<br>Operation time $t$ |
-| bsb\_evo | Blue side-band Hamiltonian evolution | Mode number $j$<br>Side-band order $n$<br>Phase $\phi$<br>Operation time $t$ |
-| stark\_evo | AC Stark Hamiltonian evolution | Mode number $j$<br>Operation time $t$ |
-| kerr\_evo | Cross-Kerr Hamiltonian evolution | Mode number $j$<br>Kerr nonlinearity $\chi$<br>Operation time $t$ |
-| cntrl\_disp\_evo | Controlled displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
-| cntrl\_disp\_evo\_exact | Controlled displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
-| \_\_init\_\_ | Initialize cvqIon instance | Mass $m$<br>Charge $q$<br>Char. length $d$<br>Init. wavefunction $\psi_0$<br>Num. Fock states $N$<br>Mode frequencies<br>Heating rate<br>Dephasing rate |
-| calc\_expectations | Calculate expectation values over history | List of operators |
-| expectation\_plots | Plot expectation values over history | List of operators<br>Operator names<br>Time scale |
-| create\_wigner\_plot | Generate Wigner plots of wavefunction | $x$-dimension range<br>$p$-dimension range |
-| cont\_wigner\_plot | Generate an animation showing the evolution of the Wigner plot over time | List of plot states<br>$x$-dimension range<br>$p$-dimension range<br>Figure and axes to plot on<br>Title for figure |
-| plot\_fock | Plot distributions over Fock states | N/A |
-| fidelity | Compute fidelity of noisy w.r.t. noiseless | N/A |
+| <code>\_\_apply\_h</code> | Evolution under any Hamiltonian | Hamiltonian $H$<br>Operation time $t$<br>Master Equation solver name<br>Additional arguments dict. |
+| <code>carrier\_evo</code> | n'th blue sideband transition evolution | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
+| <code>carrier\_evo\_exact</code> | n'th blue sideband transition evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Rotation axis $\phi$<br>Rotation angle $\theta$<br>Operation time $t$ |
+| <code>free\_evo</code> | Free Hamiltonian evolution | Operation time $t$ |
+| <code>disp\_evo</code> | Displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
+| <code>disp\_evo\_exact</code> | Displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Operation time $t$ |
+| <code>sq\_evo</code> | Squeezing Hamiltonian evolution | Mode number $j$<br>Parametric amp. strength $g$<br>Modulation drive phase $\theta$<br>Operation time $t$ |
+| <code>bs\_evo</code> | Beamsplitter Hamiltonian evolution | First mode number $j$<br>Second mode number $k$<br>Beamsplitter strength $g$<br>Operation time $t$ |
+| <code>el\_drive</code> | Time-dependent classical electric drive field evolution | Amplitude of E-field $A$<br> Phase of E-field $\phi$<br>E-field drive frequency $f$<br>Mode number $j$<br>Amplitude modulation of E-field $e$<br>Operation time $t$<br>QuTiP Solver *solver*<br>Boolean for use of Blackman window vs. linear ramp-up and ramp-down<br>Ramp-up proportion *ramp\_up*<br>Ramp-down proportion *ramp\_down* |
+| <code>phase\_evo</code> | Phase-shift Hamiltonian evolution | Mode number $j$<br>Phase $\phi$<br>Operation time $t$ |
+| <code>rsb\_evo</code> | Red side-band Hamiltonian evolution | Mode number $j$<br>Side-band order $n$<br>Phase $\phi$<br>Operation time $t$ |
+| <code>bsb\_evo</code> | Blue side-band Hamiltonian evolution | Mode number $j$<br>Side-band order $n$<br>Phase $\phi$<br>Operation time $t$ |
+| <code>stark\_evo</code> | AC Stark Hamiltonian evolution | Mode number $j$<br>Operation time $t$ |
+| <code>kerr\_evo</code> | Cross-Kerr Hamiltonian evolution | Mode number $j$<br>Kerr nonlinearity $\chi$<br>Operation time $t$ |
+| <code>cntrl\_disp\_evo</code> | Controlled displacement Hamiltonian evolution | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
+| <code>cntrl\_disp\_evo\_exact</code> | Controlled displacement Hamiltonian evolution simulated exactly by evaluating $e^{-iHt}$ | Mode number $j$<br>Displacement parameter $\alpha$<br>Spin pauli phase $\phi$<br>Operation time $t$ |
+| <code>\_\_init\_\_</code> | Initialize cvqIon instance | Mass $m$<br>Charge $q$<br>Char. length $d$<br>Init. wavefunction $\psi_0$<br>Num. Fock states $N$<br>Mode frequencies<br>Heating rate<br>Dephasing rate |
+| <code>calc\_expectations</code> | Calculate expectation values over history | List of operators |
+| <code>expectation\_plots</code> | Plot expectation values over history | List of operators<br>Operator names<br>Time scale |
+| <code>create\_wigner\_plot</code> | Generate Wigner plots of wavefunction | $x$-dimension range<br>$p$-dimension range |
+| <code>cont\_wigner\_plot</code> | Generate an animation showing the evolution of the Wigner plot over time | List of plot states<br>$x$-dimension range<br>$p$-dimension range<br>Figure and axes to plot on<br>Title for figure |
+| <code>plot\_fock</code> | Plot distributions over Fock states | N/A |
+| <code>fidelity</code> | Compute fidelity of noisy w.r.t. noiseless | N/A |
 
-We primarily make use of the carrier\_evo\_exact and cntrl\_disp\_evo\_exact functions to construct the desired QSPI sensing states, as well as the cat states, and we also use the disp\_evo\_exact function for implementing the displacement operation to be sensed in the evaluation of the full protocol.  We then utilize the create\_wigner\_plot function in our plotting code in order to visualize these states.
+We primarily make use of the <code>carrier\_evo\_exact</code> and <code>cntrl\_disp\_evo\_exact</code> functions to construct the desired QSPI sensing states, as well as the cat states, and we also use the <code>disp\_evo\_exact</code> function for implementing the displacement operation to be sensed in the evaluation of the full protocol.  We then utilize the <code>create\_wigner\_plot</code> function in our plotting code in order to visualize these states.
 
 ### qspi\_phase\_learning.py
 
@@ -50,18 +50,18 @@ The <strong><code>cvqi\_phase\_learning.py</code></strong> code file provides co
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
-| calc\_qsp\_coeff | Calculates $f$ and $g$ coefficients given phases | Phases |
-| calc\_qsp\_coeff\_tensor | Calculates tensors of $f$ and $g$ coefficients given phases | Phases |
-| prob\_exact | Calculates the probability of error $p_{\rm err}$ given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$ |
-| loss\_fn\_exact | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
+| <code>calc\_qsp\_coeff</code> | Calculates $f$ and $g$ coefficients given phases | Phases |
+| <code>calc\_qsp\_coeff\_tensor</code> | Calculates tensors of $f$ and $g$ coefficients given phases | Phases |
+| <code>prob\_exact</code> | Calculates the probability of error $p_{\rm err}$ given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$ |
+| <code>loss\_fn\_exact</code> | Calculates the exact value of the loss function given phases | Phases<br>Threshold $\beta_{\rm th}$<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Boolean flag indicating whether called from callback |
 
 Using these functions, and, in particular, the function loss\_fn\_exact, we implement in this code file machine optimization on the QSPI phases with the Nelder-Mead optimization algorithm in order to find phases that make optimal decisions about displacement of a quantum state.
 
-The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the <strong><code>qspi\_phase\_learning.py</code></strong> file and add the desired degrees to the variable degree\_list, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which has the weakness that during optimization, the phases might get stuck in a local minimum of the loss function rather than being minimized all of the way to the global loss.  As such, it might be beneficial to set the num\_trials variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable phases0 to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being $\kappa$, the scale parameter represented by the variable K, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
+The procedure to learn or fine-tune phases for any QSPI sequence length is to navigate to the end of the <strong><code>qspi\_phase\_learning.py</code></strong> file and add the desired degrees to the variable <code>degree\_list</code>, also setting the desired parameters for convergence in the options variable.  This alone performs the learning from a fully random initial state, which has the weakness that during optimization, the phases might get stuck in a local minimum of the loss function rather than being minimized all of the way to the global loss.  As such, it might be beneficial to set the <code>num\_trials</code> variable to more than 1 so that the program learns the best phases beginning from multiple distinct initial conditions.  If instead of learning completely from scratch one would like to fine-tune a sequence of phases, one should initialize the variable <code>phases0</code> to a Pytorch tensor of the desired initial condition prior to the line setting the variable res equal to the result of the scipy.optimize.minimize function.  All of the other variables should also be fairly self-explanatory, with the most important being $\kappa$, the scale parameter represented by the variable <code>K</code>, which also determines the threshold $\beta_{\rm th}$, represented by the variable beta\_th.
 
 ### cvqi\_and\_cat\_wigner\_plots.py
 
-The <strong><code>cvqi\_and\_cat\_wigner\_plots.py</code></strong> code file is used only to generate the CVQI sensing state and cat state Wigner plots given the learned QSPI phases.  It primarily utilizes the <strong><code>cvqi.py</code></strong> code for the cvqiIon class to do so and does not have any functions of its own.
+The <strong><code>cvqi\_and\_cat\_wigner\_plots.py</code></strong> code file is used only to generate the CVQI sensing state and cat state Wigner plots given the learned QSPI phases.  It primarily utilizes the <strong><code>cvqi.py</code></strong> code for the <code>cvqiIon</code> class to do so and does not have any functions of its own.
 
 ### plot\_qspi\_sensing\_state\_response.py
 
@@ -69,8 +69,8 @@ The <strong><code>plot\_qspi\_sensing\_state\_response.py</code></strong> code f
 
 | Function Name | Description | Input Parameters |
 |-|-|-|
-| signal\_poly\_prob\_grid | Calculates the probabilities of the qubit response function in the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include |
-| signal\_poly\_prob\_grid\_qsp\_partial | Calculates the probabilities of the qubit response function in a subset of the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include<br>Proportion of the range to include<br>Boolean indicating whether to begin at $-\frac{\pi}{2\kappa}$ or end at $\frac{\pi}{2\kappa}$ |
+| <code>signal\_poly\_prob\_grid</code> | Calculates the probabilities of the qubit response function in the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include |
+| <code>signal\_poly\_prob\_grid\_qsp\_partial</code> | Calculates the probabilities of the qubit response function in a subset of the range from $-\frac{\pi}{2\kappa}$ to $\frac{\pi}{2\kappa}$ given the number of grid units to include | Phases<br>Scale parameter $\kappa$<br>Variance of state $\sigma$<br>Number of grid units to include<br>Proportion of the range to include<br>Boolean indicating whether to begin at $-\frac{\pi}{2\kappa}$ or end at $\frac{\pi}{2\kappa}$ |
 
 Using these two functions, we calculate all of the values necessary to generate the plots for our paper using the optimal QSPI phases learned from the code given in <strong><code>cvqi\_phase\_learning.py</code></strong>.
 
